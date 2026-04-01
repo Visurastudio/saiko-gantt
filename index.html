@@ -9,19 +9,17 @@
 html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif;background:#F0EDE6;color:#1C1A18}
 
 /* ── SETUP SCREEN ── */
-#setup-screen{position:fixed;inset:0;z-index:9999;background:#1C1A18;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0}
+#setup-screen{position:fixed;inset:0;z-index:9999;background:#1C1A18;display:flex;align-items:center;justify-content:center}
 #setup-screen.hidden{display:none}
-.setup-card{background:#fff;border-radius:20px;padding:2.5rem 3rem;max-width:520px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,0.4)}
-.setup-logo{font-size:24px;font-weight:800;color:#1C1A18;margin-bottom:1.5rem;display:flex;align-items:center;gap:8px}
+.setup-card{background:#fff;border-radius:20px;padding:2.5rem 3rem;max-width:540px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,0.4)}
+.setup-logo{font-size:22px;font-weight:800;color:#1C1A18;margin-bottom:1.5rem;display:flex;align-items:center;gap:8px}
 .setup-logo span{color:#8B6BFF}
 .setup-logo .dot{width:10px;height:10px;border-radius:50%;background:#8B6BFF;display:inline-block}
-.setup-title{font-size:17px;font-weight:700;color:#1C1A18;margin-bottom:.4rem}
+.setup-title{font-size:16px;font-weight:700;margin-bottom:.4rem}
 .setup-sub{font-size:13px;color:#888;line-height:1.6;margin-bottom:1.5rem}
-.setup-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:1.75rem}
+.setup-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
 .setup-step{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:#555;line-height:1.5}
-.step-n{width:22px;height:22px;border-radius:50%;background:#8B6BFF;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.step-n a{color:#8B6BFF;text-decoration:none;font-weight:700}
-.step-n a:hover{text-decoration:underline}
+.sn{width:22px;height:22px;border-radius:50%;background:#8B6BFF;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .setup-step a{color:#8B6BFF;text-decoration:none;font-weight:600}
 .setup-step a:hover{text-decoration:underline}
 .setup-field{display:flex;flex-direction:column;gap:5px;margin-bottom:1.25rem}
@@ -29,8 +27,17 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
 .setup-field input{border:1.5px solid #E5E5E5;border-radius:8px;padding:10px 14px;font-size:13px;font-family:'Nunito',sans-serif;color:#1C1A18;outline:none;transition:border-color .15s}
 .setup-field input:focus{border-color:#8B6BFF}
 .setup-field input.err{border-color:#E24B4A}
+/* URL share box */
+.share-box{background:#F0EDE6;border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.25rem;display:none}
+.share-box.show{display:block}
+.share-box-title{font-size:11px;font-weight:700;color:#8B6BFF;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem}
+.share-box-sub{font-size:12px;color:#666;line-height:1.5;margin-bottom:.75rem}
+.share-url{display:flex;gap:6px}
+.share-url input{flex:1;border:1.5px solid #ddd;border-radius:7px;padding:7px 10px;font-size:11px;font-family:'Nunito',sans-serif;color:#333;background:#fff;outline:none}
+.share-url button{background:#8B6BFF;color:#fff;border:none;border-radius:7px;padding:7px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap}
+.share-url button:hover{background:#7A5AEE}
+.share-url button.copied{background:#5DB85A}
 .setup-note{font-size:11.5px;color:#aaa;line-height:1.5;margin-bottom:1.5rem}
-.setup-note strong{color:#666}
 .setup-btns{display:flex;gap:10px}
 .setup-btn-main{flex:1;background:#8B6BFF;color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;transition:background .15s}
 .setup-btn-main:hover{background:#7A5AEE}
@@ -46,9 +53,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
 .tb-center{display:flex;gap:16px;align-items:center;font-size:11px}
 .tb-info{color:rgba(255,255,255,0.4)}
 .tb-info strong{color:rgba(255,255,255,0.8)}
+#countdown{font-size:10px;color:rgba(255,255,255,0.25);min-width:70px;text-align:center}
 .tb-actions{display:flex;gap:8px;align-items:center}
-
-/* save indicator */
 .save-pill{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px;transition:all .3s}
 .save-pill.idle{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.4)}
 .save-pill.saving{background:rgba(139,107,255,0.25);color:#C4B0FF}
@@ -62,15 +68,13 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
 .error .sp-dot{background:#F09595}
 .local .sp-dot{background:#FFBFA3}
 @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
-
-/* countdown */
-#countdown{font-size:10px;color:rgba(255,255,255,0.25);min-width:60px;text-align:center}
-
 .tb-btn{font-size:11px;font-weight:700;padding:5px 14px;border-radius:6px;border:none;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .15s}
 .tb-reset{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)}
 .tb-reset:hover{background:rgba(255,255,255,0.15);color:#fff}
 .tb-save-now{background:#8B6BFF;color:#fff}
 .tb-save-now:hover{background:#7A5AEE}
+.tb-share{background:rgba(93,184,90,0.2);color:#7DE3BE;font-size:12px;padding:5px 10px}
+.tb-share:hover{background:rgba(93,184,90,0.35);color:#9DECCE}
 .tb-settings{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);font-size:14px;padding:5px 10px}
 .tb-settings:hover{background:rgba(255,255,255,0.12);color:#fff}
 
@@ -78,7 +82,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
 #gantt-scroll{position:fixed;top:46px;left:0;right:0;bottom:0;overflow:auto}
 #gantt-inner{position:relative;min-height:100%}
 
-/* ── STICKY HEADER ── */
+/* ── HEADER ── */
 #gh{position:sticky;top:0;z-index:200;display:flex;background:#E4E0D8;border-bottom:2px solid rgba(0,0,0,0.12);height:52px;width:max-content;min-width:100%}
 .gh-corner{flex-shrink:0;position:sticky;left:0;z-index:201;background:#E4E0D8;display:flex;align-items:center;padding:0 14px;font-size:10px;font-weight:700;color:rgba(28,26,24,0.4);letter-spacing:.5px;text-transform:uppercase;border-right:2px solid rgba(0,0,0,0.1)}
 .gh-weeks{display:flex;flex:1}
@@ -90,7 +94,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
 .wcol.wl{background:rgba(226,75,74,0.1);color:#E24B4A;font-weight:800}
 .wcol.wt{background:rgba(139,107,255,0.08);color:#8B6BFF;font-weight:700}
 
-/* ── TRACK SECTION ── */
+/* ── TRACK ── */
 .track-section{margin-top:6px;width:max-content;min-width:100%}
 .track-section:first-child{margin-top:0}
 .track-title-row{display:flex;height:34px;background:#1C1A18;width:max-content;min-width:100%}
@@ -104,8 +108,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
 .task-row.drag-over-bot::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:#8B6BFF;z-index:300}
 
 /* ── LABEL ── */
-.glabel{flex-shrink:0;position:sticky;left:0;z-index:50;background:#fff;display:flex;align-items:center;gap:0;border-bottom:.5px solid rgba(0,0,0,0.05);border-right:2px solid rgba(0,0,0,0.06);transition:background .1s;overflow:hidden}
-.grip{width:22px;height:100%;display:flex;align-items:center;justify-content:center;cursor:grab;flex-shrink:0;color:rgba(28,26,24,0.2);font-size:12px;transition:color .15s;padding:0 2px}
+.glabel{flex-shrink:0;position:sticky;left:0;z-index:50;background:#fff;display:flex;align-items:center;border-bottom:.5px solid rgba(0,0,0,0.05);border-right:2px solid rgba(0,0,0,0.06);transition:background .1s;overflow:hidden}
+.grip{width:22px;height:100%;display:flex;align-items:center;justify-content:center;cursor:grab;flex-shrink:0;color:rgba(28,26,24,0.2);font-size:12px;transition:color .15s}
 .grip:hover{color:rgba(28,26,24,0.5)}
 .grip:active{cursor:grabbing}
 .gl-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-right:7px}
@@ -123,15 +127,15 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
 .gcell.tcol{background:rgba(139,107,255,0.04)}
 
 /* ── BAR ── */
-.gbar{position:absolute;top:50%;transform:translateY(-50%);height:20px;border-radius:6px;display:flex;align-items:center;cursor:grab;user-select:none;z-index:10;min-width:20px;transition:box-shadow .1s}
+.gbar{position:absolute;top:50%;transform:translateY(-50%);height:20px;border-radius:6px;display:flex;align-items:center;cursor:grab;user-select:none;z-index:10;min-width:4px;transition:box-shadow .1s}
 .gbar:hover{box-shadow:0 2px 10px rgba(0,0,0,0.15)}
 .gbar.hdrag{cursor:grabbing;opacity:.85;box-shadow:0 4px 16px rgba(0,0,0,0.2);z-index:100}
-.bar-handle{width:8px;height:100%;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:ew-resize;opacity:0;transition:opacity .15s}
+.bar-handle{width:7px;height:100%;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:ew-resize;opacity:0;transition:opacity .15s}
 .gbar:hover .bar-handle{opacity:1}
 .bar-handle::after{content:'';display:block;width:2px;height:10px;border-radius:1px;background:rgba(0,0,0,0.25)}
 .bhl{border-radius:6px 0 0 6px}
 .bhr{border-radius:0 6px 6px 0}
-.bar-txt{flex:1;font-size:9px;font-weight:700;padding:0 6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;pointer-events:none}
+.bar-txt{flex:1;font-size:9px;font-weight:700;padding:0 4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;pointer-events:none}
 
 /* ── MILESTONE ── */
 .mdot{position:absolute;top:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:#E24B4A;border:2px solid #fff;outline:1.5px solid #E24B4A;z-index:20;pointer-events:none}
@@ -141,8 +145,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
 .add-btn{flex-shrink:0;position:sticky;left:0;background:#fafaf8;display:flex;align-items:center;padding:0 14px 0 22px;gap:6px;font-size:11px;font-weight:600;color:rgba(28,26,24,0.35);cursor:pointer;border:none;font-family:'Nunito',sans-serif;border-right:2px solid rgba(0,0,0,0.06);border-top:1px dashed rgba(0,0,0,0.08);transition:all .15s;height:100%}
 .add-btn:hover{color:rgba(28,26,24,0.65);background:#f3f1ec}
 .add-grid-fill{flex:1;border-top:1px dashed rgba(0,0,0,0.08)}
-
-/* ── ADD FORM ── */
 .add-form-row{display:flex;height:40px;width:max-content;min-width:100%;background:#f5f3ee;border-top:1px solid rgba(139,107,255,0.2);border-bottom:1px solid rgba(139,107,255,0.1)}
 .add-form-inner{flex-shrink:0;position:sticky;left:0;background:#f5f3ee;display:flex;align-items:center;padding:0 8px 0 22px;gap:6px;border-right:2px solid rgba(139,107,255,0.2)}
 .add-form-inner input[type=text]{font-size:11px;font-family:'Nunito',sans-serif;border:1px solid rgba(0,0,0,0.15);border-radius:5px;padding:3px 7px;background:#fff;outline:none;color:#1C1A18;width:160px}
@@ -157,11 +159,44 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
 .af-cancel:hover{background:rgba(0,0,0,0.05)}
 .add-form-grid{flex:1}
 
-/* ── VERTICAL DRAG GHOST ── */
+/* ── SHARE MODAL ── */
+#share-modal{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+#share-modal.hidden{display:none}
+.sm-card{background:#fff;border-radius:16px;padding:2rem;max-width:500px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,0.3)}
+.sm-title{font-size:16px;font-weight:800;margin-bottom:.5rem;display:flex;align-items:center;justify-content:space-between}
+.sm-sub{font-size:13px;color:#888;line-height:1.6;margin-bottom:1.25rem}
+.sm-close{background:none;border:none;font-size:18px;cursor:pointer;color:#aaa;line-height:1}
+.sm-close:hover{color:#555}
+.sm-url-wrap{display:flex;gap:8px;margin-bottom:1rem}
+.sm-url-wrap input{flex:1;border:1.5px solid #E5E5E5;border-radius:8px;padding:9px 12px;font-size:12px;font-family:'Nunito',sans-serif;color:#555;outline:none;background:#f9f9f9}
+.sm-copy{background:#8B6BFF;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;white-space:nowrap;transition:background .15s}
+.sm-copy:hover{background:#7A5AEE}
+.sm-copy.copied{background:#5DB85A}
+.sm-note{font-size:12px;color:#aaa;line-height:1.6;background:#f9f9f9;border-radius:8px;padding:.75rem 1rem}
+.sm-note strong{color:#666}
+
+/* ── SETTINGS MODAL ── */
+#settings-modal{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+#settings-modal.hidden{display:none}
+.st-card{background:#fff;border-radius:16px;padding:2rem;max-width:400px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,0.3)}
+.st-title{font-size:15px;font-weight:800;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between}
+.st-close{background:none;border:none;font-size:18px;cursor:pointer;color:#aaa;line-height:1}
+.st-close:hover{color:#555}
+.st-row{display:flex;align-items:center;justify-content:space-between;padding:.7rem 0;border-bottom:.5px solid #f0f0f0}
+.st-row:last-of-type{border:none}
+.st-label{font-size:13px;color:#444;font-weight:500}
+.st-sub{font-size:11px;color:#aaa}
+.st-select{border:1.5px solid #E5E5E5;border-radius:8px;padding:6px 10px;font-size:12px;font-family:'Nunito',sans-serif;color:#1C1A18;outline:none;cursor:pointer;background:#fff}
+.st-select:focus{border-color:#8B6BFF}
+.st-actions{display:flex;gap:8px;margin-top:1.5rem}
+.st-save{flex:1;background:#8B6BFF;color:#fff;border:none;border-radius:10px;padding:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif}
+.st-save:hover{background:#7A5AEE}
+.st-cancel{background:none;border:1.5px solid #E5E5E5;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Nunito',sans-serif;color:#888}
+.st-cancel:hover{border-color:#aaa;color:#444}
+
+/* ── GHOST + TOOLTIP ── */
 #vghost{position:fixed;z-index:500;pointer-events:none;opacity:0;transition:opacity .1s;background:#1C1A18;color:#fff;font-size:11px;font-weight:600;padding:5px 12px 5px 10px;border-radius:8px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,0.3);max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #vghost.show{opacity:.92}
-
-/* ── TOOLTIP ── */
 #tooltip{position:fixed;z-index:600;background:#1C1A18;color:#fff;font-size:11px;font-weight:600;padding:5px 10px;border-radius:6px;pointer-events:none;opacity:0;transition:opacity .1s;white-space:nowrap;font-family:'Nunito',sans-serif}
 #tooltip.vis{opacity:1}
 
@@ -169,60 +204,43 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
 #legend{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:10px;flex-wrap:wrap;justify-content:center;background:rgba(233,229,222,0.95);backdrop-filter:blur(8px);padding:6px 14px;border-radius:100px;border:1px solid rgba(0,0,0,0.08);z-index:300;pointer-events:none}
 .leg{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:#555}
 .ls{width:10px;height:10px;border-radius:3px;flex-shrink:0}
-
-/* scrollbar */
 #gantt-scroll::-webkit-scrollbar{width:6px;height:6px}
 #gantt-scroll::-webkit-scrollbar-track{background:transparent}
 #gantt-scroll::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.15);border-radius:3px}
-
-/* ── SETTINGS MODAL ── */
-#settings-modal{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
-#settings-modal.hidden{display:none}
-.sm-card{background:#fff;border-radius:16px;padding:2rem;max-width:420px;width:100%;box-shadow:0 24px 60px rgba(0,0,0,0.3)}
-.sm-title{font-size:16px;font-weight:800;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between}
-.sm-close{background:none;border:none;font-size:18px;cursor:pointer;color:#aaa;line-height:1}
-.sm-close:hover{color:#555}
-.sm-field{margin-bottom:1rem}
-.sm-field label{font-size:11px;font-weight:700;color:#888;letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:5px}
-.sm-field input{border:1.5px solid #E5E5E5;border-radius:8px;padding:9px 12px;font-size:13px;font-family:'Nunito',sans-serif;color:#1C1A18;outline:none;transition:border-color .15s;width:100%}
-.sm-field input:focus{border-color:#8B6BFF}
-.sm-row{display:flex;align-items:center;justify-content:space-between;padding:.6rem 0;border-bottom:.5px solid #f0f0f0}
-.sm-row:last-of-type{border:none}
-.sm-row-label{font-size:13px;color:#444;font-weight:500}
-.sm-row-sub{font-size:11px;color:#aaa}
-.sm-select{border:1.5px solid #E5E5E5;border-radius:8px;padding:6px 10px;font-size:12px;font-family:'Nunito',sans-serif;color:#1C1A18;outline:none;cursor:pointer;background:#fff}
-.sm-select:focus{border-color:#8B6BFF}
-.sm-actions{display:flex;gap:8px;margin-top:1.5rem}
-.sm-save{flex:1;background:#8B6BFF;color:#fff;border:none;border-radius:10px;padding:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif}
-.sm-save:hover{background:#7A5AEE}
-.sm-cancel{background:none;border:1.5px solid #E5E5E5;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Nunito',sans-serif;color:#888}
-.sm-cancel:hover{border-color:#aaa;color:#444}
 </style>
 </head>
 <body>
 
-<!-- ══ SETUP SCREEN ══ -->
+<!-- ══ SETUP ══ -->
 <div id="setup-screen">
   <div class="setup-card">
-    <div class="setup-logo"><div class="dot"></div> Saiko<span>.</span> Gantt — Configuración</div>
+    <div class="setup-logo"><div class="dot"></div>Saiko<span>.</span> Gantt — Primera configuración</div>
     <div class="setup-title">Conectar guardado automático en la nube</div>
-    <div class="setup-sub">Necesitas una API Key gratuita de JSONBin para que todos los cambios se guarden automáticamente y cualquier persona con el enlace vea el mismo estado.</div>
+    <div class="setup-sub">Solo necesitas hacer esto una vez. Después te daremos un enlace especial que cualquier dispositivo abre directamente sin volver a pedir nada.</div>
     <div class="setup-steps">
-      <div class="setup-step"><div class="step-n">1</div><div>Entra en <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> y crea una cuenta gratuita</div></div>
-      <div class="setup-step"><div class="step-n">2</div><div>Ve a <strong>API Keys</strong> en tu perfil y copia tu <strong>Master Key</strong></div></div>
-      <div class="setup-step"><div class="step-n">3</div><div>Pégala aquí abajo y pulsa <strong>Conectar</strong>. Se creará automáticamente un bin para tu Gantt.</div></div>
+      <div class="setup-step"><div class="sn">1</div><div>Entra en <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> y crea una cuenta gratuita</div></div>
+      <div class="setup-step"><div class="sn">2</div><div>Ve a tu perfil → <strong>API Keys</strong> → copia la <strong>Master Key</strong> (empieza por <code style="background:#f0ede6;padding:1px 5px;border-radius:4px;font-size:11px">$2a$10$...</code>)</div></div>
+      <div class="setup-step"><div class="sn">3</div><div>Pégala aquí y pulsa Conectar. Se generará automáticamente un enlace para compartir.</div></div>
     </div>
     <div class="setup-field">
-      <label>Tu Master Key de JSONBin</label>
-      <input type="text" id="setup-key" placeholder="$2a$10$xxxxxxxxxxxxxxxxxxxxxxxxxxxx..." autocomplete="off"/>
+      <label>Master Key de JSONBin</label>
+      <input type="password" id="setup-key" placeholder="$2a$10$..." autocomplete="off"/>
     </div>
-    <div class="setup-note">
-      <strong>¿Por qué JSONBin?</strong> Es gratuito, no requiere instalar nada, y el Gantt queda guardado en la nube. Cualquiera con el enlace verá los cambios en tiempo real al recargar.
+    <div class="setup-note">🔒 La key se guarda solo en el enlace cifrado, nunca en servidores externos.</div>
+    <!-- Share URL box (shown after connect) -->
+    <div class="share-box" id="setup-share-box">
+      <div class="share-box-title">✓ Conectado — Guarda este enlace</div>
+      <div class="share-box-sub">Este enlace ya lleva la configuración incluida. Ábrelo desde cualquier dispositivo sin volver a configurar nada. Compártelo con Ana Gloria para que vea el mismo Gantt.</div>
+      <div class="share-url">
+        <input type="text" id="setup-share-url" readonly/>
+        <button id="setup-copy-btn" onclick="copySetupUrl()">Copiar enlace</button>
+      </div>
     </div>
-    <div class="setup-err" id="setup-err">No se pudo conectar. Comprueba que la API Key sea correcta.</div>
+    <div class="setup-err" id="setup-err">No se pudo conectar. Comprueba que la Master Key sea correcta.</div>
     <div class="setup-btns">
       <button class="setup-btn-main" id="setup-connect-btn" onclick="connectCloud()">Conectar con JSONBin</button>
-      <button class="setup-btn-local" onclick="useLocal()">Solo local (sin nube)</button>
+      <button class="setup-btn-local" id="setup-local-btn" onclick="useLocal()">Solo local</button>
+      <button class="setup-btn-main" id="setup-enter-btn" style="display:none;background:#5DB85A" onclick="enterGantt()">Entrar al Gantt →</button>
     </div>
   </div>
 </div>
@@ -231,16 +249,14 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
 <div id="topbar">
   <div class="tb-logo">Saiko<span>.</span></div>
   <div class="tb-center">
-    <div class="tb-info"><strong id="task-count">— tareas</strong></div>
+    <div class="tb-info"><strong id="task-count">—</strong></div>
     <div class="tb-info">1 Abr → <strong style="color:#ff8080">15 Sep 2026</strong></div>
-    <div id="countdown" title="Próximo guardado automático"></div>
+    <div id="countdown"></div>
   </div>
   <div class="tb-actions">
-    <div class="save-pill idle" id="save-pill">
-      <div class="sp-dot"></div>
-      <span id="save-text">Sin cambios</span>
-    </div>
-    <button class="tb-btn tb-save-now" onclick="saveNow()" title="Guardar ahora">↑ Guardar</button>
+    <div class="save-pill idle" id="save-pill"><div class="sp-dot"></div><span id="save-text">—</span></div>
+    <button class="tb-btn tb-share" onclick="openShareModal()" title="Obtener enlace para compartir">🔗 Compartir</button>
+    <button class="tb-btn tb-save-now" onclick="saveNow()">↑ Guardar</button>
     <button class="tb-btn tb-reset" onclick="resetAll()">↺ Restaurar</button>
     <button class="tb-btn tb-settings" onclick="openSettings()" title="Configuración">⚙</button>
   </div>
@@ -253,24 +269,26 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
   </div>
 </div>
 
-<div id="vghost"></div>
-<div id="tooltip"></div>
+<!-- ══ SHARE MODAL ══ -->
+<div id="share-modal" class="hidden">
+  <div class="sm-card">
+    <div class="sm-title">Enlace para compartir <button class="sm-close" onclick="closeShareModal()">✕</button></div>
+    <div class="sm-sub">Este enlace lleva la configuración incluida. Cualquier dispositivo que lo abra accede directamente al Gantt sin pedir nada.</div>
+    <div class="sm-url-wrap">
+      <input type="text" id="share-url-input" readonly/>
+      <button class="sm-copy" id="share-copy-btn" onclick="copyShareUrl()">Copiar</button>
+    </div>
+    <div class="sm-note"><strong>Consejo:</strong> Guarda este enlace en Notion como favorito o marcador. Ana Gloria solo necesita este enlace para ver y editar el mismo Gantt desde cualquier dispositivo.</div>
+  </div>
+</div>
 
 <!-- ══ SETTINGS MODAL ══ -->
 <div id="settings-modal" class="hidden">
-  <div class="sm-card">
-    <div class="sm-title">Configuración <button class="sm-close" onclick="closeSettings()">✕</button></div>
-    <div class="sm-field">
-      <label>API Key de JSONBin</label>
-      <input type="text" id="sm-key" placeholder="$2a$10$..." />
-    </div>
-    <div class="sm-field">
-      <label>Bin ID (se rellena automáticamente)</label>
-      <input type="text" id="sm-binid" placeholder="Se crea automáticamente al conectar" />
-    </div>
-    <div class="sm-row">
-      <div><div class="sm-row-label">Intervalo de guardado automático</div><div class="sm-row-sub">Cada cuánto tiempo se guardan los cambios</div></div>
-      <select class="sm-select" id="sm-interval">
+  <div class="st-card">
+    <div class="st-title">Configuración <button class="st-close" onclick="closeSettings()">✕</button></div>
+    <div class="st-row">
+      <div><div class="st-label">Guardado automático</div><div class="st-sub">Intervalo entre guardados automáticos</div></div>
+      <select class="st-select" id="sm-interval">
         <option value="15">Cada 15 seg</option>
         <option value="30" selected>Cada 30 seg</option>
         <option value="60">Cada 1 min</option>
@@ -278,19 +296,22 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
         <option value="300">Cada 5 min</option>
       </select>
     </div>
-    <div class="sm-row">
-      <div><div class="sm-row-label">Modo de guardado</div><div class="sm-row-sub">Solo guardar si hubo cambios</div></div>
-      <select class="sm-select" id="sm-onchange">
-        <option value="1" selected>Solo si hay cambios</option>
-        <option value="0">Siempre (cada intervalo)</option>
+    <div class="st-row">
+      <div><div class="st-label">Solo si hay cambios</div><div class="st-sub">No guardar si nada ha cambiado</div></div>
+      <select class="st-select" id="sm-onchange">
+        <option value="1" selected>Sí</option>
+        <option value="0">No (siempre guardar)</option>
       </select>
     </div>
-    <div class="sm-actions">
-      <button class="sm-save" onclick="saveSettings()">Guardar configuración</button>
-      <button class="sm-cancel" onclick="closeSettings()">Cancelar</button>
+    <div class="st-actions">
+      <button class="st-save" onclick="saveSettings()">Guardar</button>
+      <button class="st-cancel" onclick="closeSettings()">Cancelar</button>
     </div>
   </div>
 </div>
+
+<div id="vghost"></div>
+<div id="tooltip"></div>
 
 <div id="legend">
   <div class="leg"><div class="ls" style="background:#CECBF6"></div>Plataforma</div>
@@ -305,199 +326,192 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Nunito',sans-serif
 
 <script>
 /* ══════════════════════════════════
-   CLOUD CONFIG
+   URL CONFIG — credentials travel in the URL hash
+   Format: #cfg=base64({apiKey,binId,interval,onlyOnChange})
 ══════════════════════════════════ */
-let cloudConfig = {
-  apiKey: '',
-  binId: '',
-  interval: 30,
-  onlyOnChange: true,
-  mode: 'none', // 'cloud' | 'local' | 'none'
-};
+let cfg = {apiKey:'', binId:'', interval:30, onlyOnChange:true, mode:'none'};
 
-let hasUnsavedChanges = false;
-let autoSaveTimer = null;
-let countdownTimer = null;
-let countdownSec = 0;
-const STORAGE_KEY = 'saiko_gantt_config';
-const DATA_KEY    = 'saiko_gantt_data';
+function encodeCfg(c){ return btoa(JSON.stringify({k:c.apiKey,b:c.binId,i:c.interval,o:c.onlyOnChange?1:0})); }
+function decodeCfg(s){ try{ const d=JSON.parse(atob(s)); return {apiKey:d.k,binId:d.b,interval:d.i||30,onlyOnChange:d.o!==0,mode:'cloud'}; }catch(e){ return null; } }
 
-function loadConfig(){
-  try{
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if(raw) cloudConfig = {...cloudConfig, ...JSON.parse(raw)};
-  }catch(e){}
+function getShareUrl(){
+  const base = window.location.href.split('#')[0];
+  return base + '#cfg=' + encodeCfg(cfg);
 }
-function saveConfig(){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudConfig));
+
+function readUrlConfig(){
+  const hash = window.location.hash;
+  if(hash.startsWith('#cfg=')){
+    const decoded = decodeCfg(hash.slice(5));
+    if(decoded && decoded.apiKey && decoded.binId){ cfg = decoded; return true; }
+  }
+  return false;
 }
 
 /* ══════════════════════════════════
    SETUP SCREEN
 ══════════════════════════════════ */
+let setupConnected = false;
+
 async function connectCloud(){
   const key = document.getElementById('setup-key').value.trim();
   if(!key){ document.getElementById('setup-key').classList.add('err'); return; }
-  document.getElementById('setup-connect-btn').textContent = 'Conectando...';
+  const btn = document.getElementById('setup-connect-btn');
+  btn.textContent = 'Conectando...'; btn.disabled = true;
   document.getElementById('setup-err').classList.remove('show');
   try{
-    // create a new bin
-    const res = await fetch('https://api.jsonbin.io/v3/b', {
+    const res = await fetch('https://api.jsonbin.io/v3/b',{
       method:'POST',
       headers:{'Content-Type':'application/json','X-Master-Key':key,'X-Bin-Name':'Saiko Gantt'},
       body: JSON.stringify({tracks: JSON.parse(JSON.stringify(DEFAULT_TRACKS)), version:1})
     });
-    if(!res.ok) throw new Error('API error '+res.status);
+    if(!res.ok) throw new Error('HTTP '+res.status);
     const data = await res.json();
-    cloudConfig = {apiKey:key, binId:data.metadata.id, interval:30, onlyOnChange:true, mode:'cloud'};
-    saveConfig();
-    hideSetup();
-    initGantt();
-    setSaveStatus('saved','Conectado · Guardado');
-    startAutoSave();
+    cfg = {apiKey:key, binId:data.metadata.id, interval:30, onlyOnChange:true, mode:'cloud'};
+
+    // update URL without reloading
+    history.replaceState(null,'',getShareUrl());
+
+    // show share box
+    document.getElementById('setup-share-url').value = getShareUrl();
+    document.getElementById('setup-share-box').classList.add('show');
+    document.getElementById('setup-connect-btn').style.display='none';
+    document.getElementById('setup-local-btn').style.display='none';
+    document.getElementById('setup-enter-btn').style.display='flex';
+    setupConnected = true;
   } catch(e){
     document.getElementById('setup-err').classList.add('show');
-    document.getElementById('setup-connect-btn').textContent = 'Conectar con JSONBin';
+    btn.textContent = 'Conectar con JSONBin'; btn.disabled = false;
   }
 }
 
-function useLocal(){
-  cloudConfig.mode = 'local';
-  saveConfig();
-  hideSetup();
+function copySetupUrl(){
+  const url = document.getElementById('setup-share-url').value;
+  navigator.clipboard.writeText(url).then(()=>{
+    const btn = document.getElementById('setup-copy-btn');
+    btn.textContent = '✓ Copiado'; btn.style.background='#5DB85A';
+    setTimeout(()=>{ btn.textContent='Copiar enlace'; btn.style.background=''; }, 2000);
+  });
+}
+
+function enterGantt(){
+  document.getElementById('setup-screen').classList.add('hidden');
   initGantt();
-  setSaveStatus('local','Solo local');
   startAutoSave();
 }
 
-function hideSetup(){
+function useLocal(){
+  cfg.mode = 'local';
   document.getElementById('setup-screen').classList.add('hidden');
+  initGantt();
+  startAutoSave();
+}
+
+/* ══════════════════════════════════
+   SHARE MODAL
+══════════════════════════════════ */
+function openShareModal(){
+  document.getElementById('share-url-input').value = getShareUrl();
+  document.getElementById('share-modal').classList.remove('hidden');
+}
+function closeShareModal(){ document.getElementById('share-modal').classList.add('hidden'); }
+function copyShareUrl(){
+  navigator.clipboard.writeText(document.getElementById('share-url-input').value).then(()=>{
+    const btn = document.getElementById('share-copy-btn');
+    btn.textContent='✓ Copiado'; btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent='Copiar'; btn.classList.remove('copied'); }, 2000);
+  });
 }
 
 /* ══════════════════════════════════
    SAVE / LOAD
 ══════════════════════════════════ */
+let hasChanges = false;
+let autoSaveTimer = null, countdownTimer = null, countdownSec = 0;
+const LOCAL_KEY = 'saiko_gantt_data';
+
 async function saveNow(){
-  if(cloudConfig.mode==='none') return;
+  if(cfg.mode==='none') return;
   setSaveStatus('saving','Guardando...');
   try{
-    if(cloudConfig.mode==='cloud'){
-      const res = await fetch(`https://api.jsonbin.io/v3/b/${cloudConfig.binId}`, {
+    if(cfg.mode==='cloud'){
+      const res = await fetch(`https://api.jsonbin.io/v3/b/${cfg.binId}`,{
         method:'PUT',
-        headers:{'Content-Type':'application/json','X-Master-Key':cloudConfig.apiKey},
+        headers:{'Content-Type':'application/json','X-Master-Key':cfg.apiKey},
         body: JSON.stringify({tracks, version:1})
       });
       if(!res.ok) throw new Error('HTTP '+res.status);
     } else {
-      localStorage.setItem(DATA_KEY, JSON.stringify({tracks}));
+      localStorage.setItem(LOCAL_KEY, JSON.stringify({tracks}));
     }
-    hasUnsavedChanges = false;
-    const now = new Date();
-    const t = now.getHours()+':'+String(now.getMinutes()).padStart(2,'0')+':'+String(now.getSeconds()).padStart(2,'0');
-    setSaveStatus('saved', cloudConfig.mode==='cloud'?'Guardado en nube · '+t:'Guardado local · '+t);
+    hasChanges = false;
+    const t = new Date(); const ts = t.getHours()+':'+String(t.getMinutes()).padStart(2,'0')+':'+String(t.getSeconds()).padStart(2,'0');
+    setSaveStatus('saved', (cfg.mode==='cloud'?'☁ Guardado · ':'💾 Guardado · ')+ts);
   } catch(e){
-    setSaveStatus('error','Error al guardar');
+    setSaveStatus('error','Error al guardar — reintentando');
+    setTimeout(saveNow, 5000);
   }
 }
 
-async function loadCloud(){
-  if(cloudConfig.mode==='cloud' && cloudConfig.binId){
+async function loadData(){
+  if(cfg.mode==='cloud' && cfg.binId){
     try{
-      const res = await fetch(`https://api.jsonbin.io/v3/b/${cloudConfig.binId}/latest`,{
-        headers:{'X-Master-Key':cloudConfig.apiKey}
-      });
+      const res = await fetch(`https://api.jsonbin.io/v3/b/${cfg.binId}/latest`,{headers:{'X-Master-Key':cfg.apiKey}});
       if(!res.ok) throw new Error('HTTP '+res.status);
       const data = await res.json();
-      if(data.record && data.record.tracks){
-        tracks = data.record.tracks;
-        return true;
-      }
+      if(data.record && data.record.tracks){ tracks = data.record.tracks; return true; }
     } catch(e){ console.warn('Load error',e); }
-  } else if(cloudConfig.mode==='local'){
+  } else if(cfg.mode==='local'){
     try{
-      const raw = localStorage.getItem(DATA_KEY);
+      const raw = localStorage.getItem(LOCAL_KEY);
       if(raw){ const d=JSON.parse(raw); if(d.tracks){ tracks=d.tracks; return true; } }
     } catch(e){}
   }
   return false;
 }
 
-function setSaveStatus(state, text){
-  const pill = document.getElementById('save-pill');
-  const span = document.getElementById('save-text');
-  pill.className = 'save-pill '+state;
-  span.textContent = text;
+function setSaveStatus(state,text){
+  const pill=document.getElementById('save-pill'); const span=document.getElementById('save-text');
+  pill.className='save-pill '+state; span.textContent=text;
 }
+function markDirty(){ hasChanges=true; setSaveStatus('idle','Cambios sin guardar'); }
 
-function markDirty(){
-  hasUnsavedChanges = true;
-  setSaveStatus('idle','Cambios sin guardar');
-}
-
-/* ── Auto save countdown ── */
 function startAutoSave(){
-  if(autoSaveTimer) { clearInterval(autoSaveTimer); clearInterval(countdownTimer); }
-  countdownSec = cloudConfig.interval;
+  if(autoSaveTimer){ clearInterval(autoSaveTimer); clearInterval(countdownTimer); }
+  countdownSec = cfg.interval;
   updateCountdown();
-
-  countdownTimer = setInterval(()=>{
-    countdownSec--;
-    if(countdownSec <= 0) countdownSec = cloudConfig.interval;
-    updateCountdown();
-  }, 1000);
-
-  autoSaveTimer = setInterval(async ()=>{
-    countdownSec = cloudConfig.interval;
-    if(cloudConfig.mode==='none') return;
-    if(cloudConfig.onlyOnChange && !hasUnsavedChanges) return;
-    await saveNow();
-  }, cloudConfig.interval * 1000);
+  countdownTimer = setInterval(()=>{ countdownSec--; if(countdownSec<=0) countdownSec=cfg.interval; updateCountdown(); }, 1000);
+  autoSaveTimer = setInterval(async()=>{ countdownSec=cfg.interval; if(cfg.onlyOnChange&&!hasChanges) return; await saveNow(); }, cfg.interval*1000);
 }
 
 function updateCountdown(){
-  const el = document.getElementById('countdown');
-  if(cloudConfig.mode==='none'){ el.textContent=''; return; }
-  const icon = cloudConfig.mode==='cloud'?'☁':'💾';
-  el.textContent = `${icon} Auto-guardado en ${countdownSec}s`;
+  const el=document.getElementById('countdown');
+  if(cfg.mode==='none'){ el.textContent=''; return; }
+  el.textContent=(cfg.mode==='cloud'?'☁':'💾')+' Auto-guardado en '+countdownSec+'s';
 }
 
 /* ══════════════════════════════════
-   SETTINGS MODAL
+   SETTINGS
 ══════════════════════════════════ */
 function openSettings(){
-  document.getElementById('sm-key').value = cloudConfig.apiKey||'';
-  document.getElementById('sm-binid').value = cloudConfig.binId||'';
-  document.getElementById('sm-interval').value = cloudConfig.interval||30;
-  document.getElementById('sm-onchange').value = cloudConfig.onlyOnChange?'1':'0';
+  document.getElementById('sm-interval').value=cfg.interval||30;
+  document.getElementById('sm-onchange').value=cfg.onlyOnChange?'1':'0';
   document.getElementById('settings-modal').classList.remove('hidden');
 }
-function closeSettings(){
-  document.getElementById('settings-modal').classList.add('hidden');
-}
-async function saveSettings(){
-  const key = document.getElementById('sm-key').value.trim();
-  const binId = document.getElementById('sm-binid').value.trim();
-  const interval = parseInt(document.getElementById('sm-interval').value)||30;
-  const onlyOnChange = document.getElementById('sm-onchange').value==='1';
-  cloudConfig = {...cloudConfig, apiKey:key, binId, interval, onlyOnChange};
-  if(key && binId) cloudConfig.mode='cloud';
-  else if(!key) cloudConfig.mode='local';
-  saveConfig();
-  startAutoSave();
-  closeSettings();
-  setSaveStatus('idle', cloudConfig.mode==='cloud'?'Configuración actualizada':'Modo local');
+function closeSettings(){ document.getElementById('settings-modal').classList.add('hidden'); }
+function saveSettings(){
+  cfg.interval=parseInt(document.getElementById('sm-interval').value)||30;
+  cfg.onlyOnChange=document.getElementById('sm-onchange').value==='1';
+  history.replaceState(null,'',getShareUrl());
+  startAutoSave(); closeSettings();
 }
 
 /* ══════════════════════════════════
    GANTT CONFIG
 ══════════════════════════════════ */
-const LABEL_W  = 244;
-const ROW_H    = 32;
-const TW       = 24;
-const LAUNCH_W = 24;
-const TODAY_W  = 1;
-const MONTH_STARTS = [1,5,9,14,18,22];
-const MONTHS = [
+const LABEL_W=244, ROW_H=32, TW=24, LAUNCH_W=24, TODAY_W=1;
+const MONTH_STARTS=[1,5,9,14,18,22];
+const MONTHS=[
   {name:'Abril',  weeks:[1,2,3,4]},
   {name:'Mayo',   weeks:[5,6,7,8]},
   {name:'Junio',  weeks:[9,10,11,12,13]},
@@ -506,7 +520,7 @@ const MONTHS = [
   {name:'Sep ★',  weeks:[22,23,24], launch:true},
 ];
 const WK_DATES=['1 Abr','8 Abr','15 Abr','22 Abr','29 Abr','6 May','13 May','20 May','27 May','3 Jun','10 Jun','17 Jun','24 Jun','1 Jul','8 Jul','15 Jul','22 Jul','29 Jul','5 Ago','12 Ago','19 Ago','26 Ago','2 Sep','9 Sep'];
-const CLR = {
+const CLR={
   web:       {bg:'#CECBF6',fg:'#3C3489',tk:'#8B6BFF',dot:'#8B6BFF'},
   cribado:   {bg:'#9FE1CB',fg:'#085041',tk:'#1D9E75',dot:'#1D9E75'},
   cursos:    {bg:'#F5C4B3',fg:'#712B13',tk:'#D85A30',dot:'#D85A30'},
@@ -515,12 +529,10 @@ const CLR = {
   marketing: {bg:'#C0DD97',fg:'#27500A',tk:'#5DB85A',dot:'#5DB85A'},
   ops:       {bg:'#D3D1C7',fg:'#444441',tk:'#888780',dot:'#888780'},
 };
+let cellW=40, uid=500;
+const newId=()=>'n'+(uid++);
 
-let cellW = 40;
-let uid = 500;
-const newId = ()=>'n'+(uid++);
-
-const DEFAULT_TRACKS = [
+const DEFAULT_TRACKS=[
   {id:'web',name:'💻  Plataforma web',tasks:[
     {id:'w1',label:'Stack tecnológico (Next.js + Supabase)',s:1,e:2,m:2},
     {id:'w2',label:'Diseño UI completo en Figma',s:1,e:6},
@@ -572,7 +584,7 @@ const DEFAULT_TRACKS = [
     {id:'d8',label:'Verificación y aprobación de perfiles',s:20,e:23},
   ]},
   {id:'legal',name:'🛡  Legal y RGPD',tasks:[
-    {id:'l1',label:'Asesoría legal — datos sensibles AACC',s:1,e:2,m:2},
+    {id:'l1',label:'Asesoría legal — datos sensibles AACC',s:1,e:1,m:2},
     {id:'l2',label:'Aviso legal + política de privacidad',s:3,e:8},
     {id:'l3',label:'Términos de contratación (cursos + test)',s:3,e:8},
     {id:'l4',label:'Política de cookies + banner',s:5,e:10},
@@ -604,52 +616,39 @@ const DEFAULT_TRACKS = [
 
 let tracks = JSON.parse(JSON.stringify(DEFAULT_TRACKS));
 
-/* ══════════════════════════════════
-   LOOKUP
-══════════════════════════════════ */
+/* ══ HELPERS ══ */
 function findTask(id){ for(const t of tracks) for(const tk of t.tasks) if(tk.id===id) return {track:t,task:tk}; return null; }
 function findTrack(id){ return tracks.find(t=>t.id===id); }
 function calcCellW(){ return Math.max(28,(window.innerWidth-LABEL_W)/TW); }
 function updateTaskCount(){ document.getElementById('task-count').textContent=tracks.reduce((s,t)=>s+t.tasks.length,0)+' tareas'; }
 
-/* ══════════════════════════════════
-   BUILD HEADER
-══════════════════════════════════ */
+/* ══ BUILD HEADER ══ */
 function buildHeader(){
-  const gh=document.getElementById('gh');
-  gh.innerHTML='';
+  const gh=document.getElementById('gh'); gh.innerHTML='';
   document.documentElement.style.setProperty('--lw',LABEL_W+'px');
-  const corner=document.createElement('div');
-  corner.className='gh-corner';corner.style.width=LABEL_W+'px';corner.textContent='Tarea / Semana';
-  gh.appendChild(corner);
-  const wks=document.createElement('div');wks.className='gh-weeks';
+  const corner=document.createElement('div'); corner.className='gh-corner'; corner.style.width=LABEL_W+'px'; corner.textContent='Tarea / Semana'; gh.appendChild(corner);
+  const wks=document.createElement('div'); wks.className='gh-weeks';
   MONTHS.forEach(m=>{
-    const mg=document.createElement('div');mg.className='mgroup';mg.style.width=(m.weeks.length*cellW)+'px';
-    const mt=document.createElement('div');mt.className='mgroup-title'+(m.launch?' lm':'');mt.textContent=m.name;mg.appendChild(mt);
-    const mw=document.createElement('div');mw.className='mgroup-weeks';
-    m.weeks.forEach(w=>{
-      const wc=document.createElement('div');
-      wc.className='wcol'+(w===LAUNCH_W?' wl':w===TODAY_W?' wt':'');
-      wc.style.width=cellW+'px';wc.textContent=w===LAUNCH_W?'🚀':'S'+w;mw.appendChild(wc);
-    });
-    mg.appendChild(mw);wks.appendChild(mg);
+    const mg=document.createElement('div'); mg.className='mgroup'; mg.style.width=(m.weeks.length*cellW)+'px';
+    const mt=document.createElement('div'); mt.className='mgroup-title'+(m.launch?' lm':''); mt.textContent=m.name; mg.appendChild(mt);
+    const mw=document.createElement('div'); mw.className='mgroup-weeks';
+    m.weeks.forEach(w=>{ const wc=document.createElement('div'); wc.className='wcol'+(w===LAUNCH_W?' wl':w===TODAY_W?' wt':''); wc.style.width=cellW+'px'; wc.textContent=w===LAUNCH_W?'🚀':'S'+w; mw.appendChild(wc); });
+    mg.appendChild(mw); wks.appendChild(mg);
   });
   gh.appendChild(wks);
 }
 
-/* ══════════════════════════════════
-   BUILD BODY
-══════════════════════════════════ */
+/* ══ BUILD BODY ══ */
 function buildBody(){
-  const body=document.getElementById('gantt-body');body.innerHTML='';
+  const body=document.getElementById('gantt-body'); body.innerHTML='';
   tracks.forEach(tr=>body.appendChild(buildSection(tr)));
   updateTaskCount();
 }
 
 function buildSection(tr){
   const col=CLR[tr.id]||CLR.ops;
-  const sec=document.createElement('div');sec.className='track-section';sec.dataset.trackId=tr.id;
-  const trow=document.createElement('div');trow.className='track-title-row';
+  const sec=document.createElement('div'); sec.className='track-section'; sec.dataset.trackId=tr.id;
+  const trow=document.createElement('div'); trow.className='track-title-row';
   trow.innerHTML=`<div class="tt-label" style="width:${LABEL_W}px;border-right-color:${col.tk}55"><span style="width:8px;height:8px;border-radius:50%;background:${col.tk};flex-shrink:0;display:inline-block"></span>${tr.name}</div><div class="tt-stripe" style="background:${col.tk};flex:1"></div>`;
   sec.appendChild(trow);
   tr.tasks.forEach(task=>sec.appendChild(buildTaskRow(task,col,tr.id)));
@@ -658,13 +657,13 @@ function buildSection(tr){
 }
 
 function buildTaskRow(task,col,trackId){
-  const row=document.createElement('div');row.className='task-row';row.dataset.taskId=task.id;row.dataset.trackId=trackId;
-  const lbl=document.createElement('div');lbl.className='glabel';lbl.style.width=LABEL_W+'px';
+  const row=document.createElement('div'); row.className='task-row'; row.dataset.taskId=task.id; row.dataset.trackId=trackId;
+  const lbl=document.createElement('div'); lbl.className='glabel'; lbl.style.width=LABEL_W+'px';
   lbl.innerHTML=`<div class="grip" title="Arrastrar para reordenar">⠿</div><div class="gl-dot" style="background:${col.dot}"></div><div class="label-text" title="${task.label}">${task.label}</div><button class="del-btn" title="Eliminar">✕</button>`;
   lbl.querySelector('.grip').addEventListener('mousedown',e=>onGripDown(e,task.id));
   lbl.querySelector('.del-btn').addEventListener('click',e=>{e.stopPropagation();deleteTask(task.id);});
   row.appendChild(lbl);
-  const grid=document.createElement('div');grid.className='ggrid';
+  const grid=document.createElement('div'); grid.className='ggrid';
   for(let w=1;w<=TW;w++){
     const cell=document.createElement('div');
     cell.className='gcell'+(w===LAUNCH_W?' lcol':w===TODAY_W?' tcol':'');
@@ -680,76 +679,66 @@ function buildTaskRow(task,col,trackId){
 function attachBar(task,grid,col){
   grid.querySelectorAll('.gbar,.mdot').forEach(el=>el.remove());
   const len=task.e-task.s+1;
-  const bar=document.createElement('div');bar.className='gbar';bar.dataset.id=task.id;
+  const bar=document.createElement('div'); bar.className='gbar'; bar.dataset.id=task.id;
   bar.style.cssText=`left:${(task.s-1)*cellW}px;width:${len*cellW}px;background:${col.bg};color:${col.fg}`;
-  const lh=document.createElement('div');lh.className='bar-handle bhl';lh.dataset.dir='l';bar.appendChild(lh);
-  const txt=document.createElement('div');txt.className='bar-txt';txt.style.color=col.fg;txt.textContent=len>=3?task.label:'';bar.appendChild(txt);
-  const rh=document.createElement('div');rh.className='bar-handle bhr';rh.dataset.dir='r';bar.appendChild(rh);
+  const lh=document.createElement('div'); lh.className='bar-handle bhl'; lh.dataset.dir='l'; bar.appendChild(lh);
+  const txt=document.createElement('div'); txt.className='bar-txt'; txt.style.color=col.fg; txt.textContent=len>=2?task.label:''; bar.appendChild(txt);
+  const rh=document.createElement('div'); rh.className='bar-handle bhr'; rh.dataset.dir='r'; bar.appendChild(rh);
   bar.addEventListener('mousedown',onBarDown);
   grid.appendChild(bar);
-  if(task.m){const md=document.createElement('div');md.className='mdot';md.style.left=((task.m-1)*cellW+cellW/2)+'px';md.title='Hito: S'+task.m;grid.appendChild(md);}
+  if(task.m){const md=document.createElement('div');md.className='mdot';md.style.left=((task.m-1)*cellW+cellW/2)+'px';md.title='Hito S'+task.m;grid.appendChild(md);}
 }
 
 function buildAddRow(trackId){
-  const addRow=document.createElement('div');addRow.className='add-row';addRow.dataset.addTrack=trackId;
-  const btn=document.createElement('button');btn.className='add-btn';btn.style.width=LABEL_W+'px';
+  const addRow=document.createElement('div'); addRow.className='add-row'; addRow.dataset.addTrack=trackId;
+  const btn=document.createElement('button'); btn.className='add-btn'; btn.style.width=LABEL_W+'px';
   btn.innerHTML='<span style="font-size:14px;line-height:1">+</span> Añadir tarea';
   btn.addEventListener('click',()=>showAddForm(trackId));
   addRow.appendChild(btn);
-  const fill=document.createElement('div');fill.className='add-grid-fill';fill.style.width=(TW*cellW)+'px';
+  const fill=document.createElement('div'); fill.className='add-grid-fill'; fill.style.width=(TW*cellW)+'px';
   addRow.appendChild(fill);
   return addRow;
 }
 
-/* ══════════════════════════════════
-   ADD / DELETE
-══════════════════════════════════ */
+/* ══ ADD / DELETE ══ */
 let activeForm=null;
-
 function showAddForm(trackId){
   if(activeForm)hideAddForm();
-  const sec=document.querySelector(`.track-section[data-track-id="${trackId}"]`);if(!sec)return;
+  const sec=document.querySelector(`.track-section[data-track-id="${trackId}"]`); if(!sec)return;
   const tr=findTrack(trackId);
   const lastEnd=tr.tasks.length?tr.tasks[tr.tasks.length-1].e:1;
-  const defS=Math.min(TW-1,lastEnd+1),defE=Math.min(TW,defS+2);
-  const form=document.createElement('div');form.className='add-form-row';
-  form.innerHTML=`<div class="add-form-inner" style="width:${LABEL_W}px"><input type="text" id="af-name" placeholder="Nombre de la tarea..."/><span class="af-label">S</span><input type="number" id="af-s" min="1" max="24" value="${defS}"/><span class="af-sep">→</span><span class="af-label">S</span><input type="number" id="af-e" min="1" max="24" value="${defE}"/><button class="af-ok" id="af-ok">✓</button><button class="af-cancel" id="af-cancel">✕</button></div><div class="add-form-grid" style="width:${TW*cellW}px"></div>`;
+  const defS=Math.min(TW,lastEnd+1), defE=Math.min(TW,defS+2);
+  const form=document.createElement('div'); form.className='add-form-row';
+  form.innerHTML=`<div class="add-form-inner" style="width:${LABEL_W}px"><input type="text" id="af-name" placeholder="Nombre de la tarea..."/><span class="af-label">S</span><input type="number" id="af-s" min="1" max="24" value="${defS}"/><span class="af-sep">→</span><span class="af-label">S</span><input type="number" id="af-e" min="1" max="24" value="${defE}"/><button class="af-ok">✓</button><button class="af-cancel">✕</button></div><div class="add-form-grid" style="width:${TW*cellW}px"></div>`;
   sec.insertBefore(form,sec.querySelector('.add-row'));
   activeForm={form,trackId};
   form.querySelector('#af-name').focus();
-  form.querySelector('#af-ok').addEventListener('click',()=>confirmAdd(trackId,form));
-  form.querySelector('#af-cancel').addEventListener('click',hideAddForm);
+  form.querySelector('.af-ok').addEventListener('click',()=>confirmAdd(trackId,form));
+  form.querySelector('.af-cancel').addEventListener('click',hideAddForm);
   form.querySelector('#af-name').addEventListener('keydown',e=>{if(e.key==='Enter')confirmAdd(trackId,form);if(e.key==='Escape')hideAddForm();});
 }
-
 function hideAddForm(){if(activeForm){activeForm.form.remove();activeForm=null;}}
-
 function confirmAdd(trackId,form){
-  const name=form.querySelector('#af-name').value.trim();
-  if(!name){form.querySelector('#af-name').style.borderColor='#E24B4A';return;}
+  const name=form.querySelector('#af-name').value.trim(); if(!name){form.querySelector('#af-name').style.borderColor='#E24B4A';return;}
   let s=parseInt(form.querySelector('#af-s').value)||1;
-  let e=parseInt(form.querySelector('#af-e').value)||s+2;
-  s=Math.max(1,Math.min(TW,s));e=Math.max(s,Math.min(TW,e));
+  let e=parseInt(form.querySelector('#af-e').value)||s;
+  s=Math.max(1,Math.min(TW,s)); e=Math.max(s,Math.min(TW,e));
   findTrack(trackId).tasks.push({id:newId(),label:name,s,e});
-  hideAddForm();rebuildSection(trackId);updateTaskCount();markDirty();
+  hideAddForm(); rebuildSection(trackId); updateTaskCount(); markDirty();
 }
-
 function deleteTask(taskId){
-  const found=findTask(taskId);if(!found)return;
+  const found=findTask(taskId); if(!found)return;
   found.track.tasks=found.track.tasks.filter(t=>t.id!==taskId);
-  rebuildSection(found.track.id);updateTaskCount();markDirty();
+  rebuildSection(found.track.id); updateTaskCount(); markDirty();
 }
-
 function rebuildSection(trackId){
   const body=document.getElementById('gantt-body');
   const old=body.querySelector(`.track-section[data-track-id="${trackId}"]`);
-  const tr=findTrack(trackId);if(!old||!tr)return;
+  const tr=findTrack(trackId); if(!old||!tr)return;
   body.replaceChild(buildSection(tr),old);
 }
 
-/* ══════════════════════════════════
-   HORIZONTAL DRAG
-══════════════════════════════════ */
+/* ══ HORIZONTAL DRAG — mínimo 1 semana ══ */
 let hDrag=null;
 const tooltip=document.getElementById('tooltip');
 
@@ -757,95 +746,92 @@ function onBarDown(e){
   const handle=e.target.closest('.bar-handle');
   if(e.target.closest('.grip'))return;
   e.preventDefault();
-  const bar=e.currentTarget;const id=bar.dataset.id;
-  const found=findTask(id);if(!found)return;
+  const bar=e.currentTarget; const id=bar.dataset.id;
+  const found=findTask(id); if(!found)return;
   const {task}=found;
   const mode=handle?(handle.dataset.dir==='l'?'rl':'rr'):'mv';
   hDrag={id,mode,startX:e.clientX,origS:task.s,origE:task.e};
   bar.classList.add('hdrag');
-  document.addEventListener('mousemove',onHMove);document.addEventListener('mouseup',onHUp);
+  document.addEventListener('mousemove',onHMove); document.addEventListener('mouseup',onHUp);
   showTip(e,task);
 }
-
 function onHMove(e){
   if(!hDrag)return;
-  const dx=e.clientX-hDrag.startX,dw=Math.round(dx/cellW);
-  const found=findTask(hDrag.id);if(!found)return;
+  const dx=e.clientX-hDrag.startX, dw=Math.round(dx/cellW);
+  const found=findTask(hDrag.id); if(!found)return;
   const {task}=found;
-  if(hDrag.mode==='mv'){const span=hDrag.origE-hDrag.origS;task.s=Math.max(1,Math.min(TW-span,hDrag.origS+dw));task.e=task.s+span;}
-  else if(hDrag.mode==='rr') task.e=Math.max(task.s+1,Math.min(TW,hDrag.origE+dw));
-  else task.s=Math.min(task.e-1,Math.max(1,hDrag.origS+dw));
-  updateBarDOM(hDrag.id,task);showTip(e,task);
+  if(hDrag.mode==='mv'){
+    const span=hDrag.origE-hDrag.origS;
+    task.s=Math.max(1,Math.min(TW-span,hDrag.origS+dw));
+    task.e=task.s+span;
+  } else if(hDrag.mode==='rr'){
+    // mínimo 1 semana: e puede ser igual a s
+    task.e=Math.max(task.s,Math.min(TW,hDrag.origE+dw));
+  } else {
+    // mínimo 1 semana: s puede ser igual a e
+    task.s=Math.min(task.e,Math.max(1,hDrag.origS+dw));
+  }
+  updateBarDOM(hDrag.id,task); showTip(e,task);
 }
-
 function onHUp(){
   if(!hDrag)return;
   const row=document.querySelector(`.task-row[data-task-id="${hDrag.id}"]`);
   if(row){const bar=row.querySelector('.gbar');if(bar)bar.classList.remove('hdrag');}
-  markDirty();
-  hDrag=null;
-  document.removeEventListener('mousemove',onHMove);document.removeEventListener('mouseup',onHUp);
+  markDirty(); hDrag=null;
+  document.removeEventListener('mousemove',onHMove); document.removeEventListener('mouseup',onHUp);
   hideTip();
 }
-
 function updateBarDOM(id,task){
-  const row=document.querySelector(`.task-row[data-task-id="${id}"]`);if(!row)return;
-  const bar=row.querySelector('.gbar');if(!bar)return;
+  const row=document.querySelector(`.task-row[data-task-id="${id}"]`); if(!row)return;
+  const bar=row.querySelector('.gbar'); if(!bar)return;
   const len=task.e-task.s+1;
-  bar.style.left=((task.s-1)*cellW)+'px';bar.style.width=(len*cellW)+'px';
-  const txt=bar.querySelector('.bar-txt');if(txt)txt.textContent=len>=3?task.label:'';
-  const md=row.querySelector('.mdot');if(md&&task.m)md.style.left=((task.m-1)*cellW+cellW/2)+'px';
+  bar.style.left=((task.s-1)*cellW)+'px'; bar.style.width=(len*cellW)+'px';
+  const txt=bar.querySelector('.bar-txt'); if(txt)txt.textContent=len>=2?task.label:'';
+  const md=row.querySelector('.mdot'); if(md&&task.m)md.style.left=((task.m-1)*cellW+cellW/2)+'px';
 }
-
 function showTip(e,task){
   const dur=task.e-task.s+1;
   tooltip.textContent=`S${task.s} (${WK_DATES[task.s-1]}) → S${task.e} (${WK_DATES[task.e-1]}) · ${dur} sem.`;
-  tooltip.style.left=(e.clientX+14)+'px';tooltip.style.top=(e.clientY-36)+'px';tooltip.classList.add('vis');
+  tooltip.style.left=(e.clientX+14)+'px'; tooltip.style.top=(e.clientY-36)+'px'; tooltip.classList.add('vis');
 }
-function hideTip(){tooltip.classList.remove('vis');}
-document.addEventListener('mousemove',e=>{if(hDrag||vDrag){tooltip.style.left=(e.clientX+14)+'px';tooltip.style.top=(e.clientY-36)+'px';}});
+function hideTip(){ tooltip.classList.remove('vis'); }
+document.addEventListener('mousemove',e=>{ if(hDrag||vDrag){ tooltip.style.left=(e.clientX+14)+'px'; tooltip.style.top=(e.clientY-36)+'px'; } });
 
-/* ══════════════════════════════════
-   VERTICAL DRAG
-══════════════════════════════════ */
+/* ══ VERTICAL DRAG ══ */
 let vDrag=null;
 const ghost=document.getElementById('vghost');
-
 function onGripDown(e,taskId){
-  e.preventDefault();e.stopPropagation();
-  const found=findTask(taskId);if(!found)return;
+  e.preventDefault(); e.stopPropagation();
+  const found=findTask(taskId); if(!found)return;
   vDrag={taskId,trackId:found.track.id,startX:e.clientX,startY:e.clientY,moved:false,overTrackId:found.track.id,overIndex:found.track.tasks.findIndex(t=>t.id===taskId),overPos:'after'};
-  ghost.textContent='⠿ '+found.task.label;ghost.style.left=(e.clientX+12)+'px';ghost.style.top=(e.clientY-18)+'px';
-  document.addEventListener('mousemove',onVMove);document.addEventListener('mouseup',onVUp);
+  ghost.textContent='⠿ '+found.task.label;
+  ghost.style.left=(e.clientX+12)+'px'; ghost.style.top=(e.clientY-18)+'px';
+  document.addEventListener('mousemove',onVMove); document.addEventListener('mouseup',onVUp);
 }
-
 function onVMove(e){
   if(!vDrag)return;
-  const dy=Math.abs(e.clientY-vDrag.startY),dx=Math.abs(e.clientX-vDrag.startX);
-  if(!vDrag.moved&&(dy>5||dx>5)){
-    vDrag.moved=true;ghost.classList.add('show');
-    const row=document.querySelector(`.task-row[data-task-id="${vDrag.taskId}"]`);if(row)row.classList.add('dragging-v');
+  if(!vDrag.moved&&(Math.abs(e.clientY-vDrag.startY)>5||Math.abs(e.clientX-vDrag.startX)>5)){
+    vDrag.moved=true; ghost.classList.add('show');
+    const row=document.querySelector(`.task-row[data-task-id="${vDrag.taskId}"]`); if(row)row.classList.add('dragging-v');
   }
   if(!vDrag.moved)return;
-  ghost.style.left=(e.clientX+12)+'px';ghost.style.top=(e.clientY-18)+'px';
-  document.querySelectorAll('.drag-over-top,.drag-over-bot').forEach(el=>{el.classList.remove('drag-over-top','drag-over-bot');});
+  ghost.style.left=(e.clientX+12)+'px'; ghost.style.top=(e.clientY-18)+'px';
+  document.querySelectorAll('.drag-over-top,.drag-over-bot').forEach(el=>el.classList.remove('drag-over-top','drag-over-bot'));
   const allRows=[...document.querySelectorAll('.task-row:not(.dragging-v)')];
   let best=null,bestDist=Infinity;
-  allRows.forEach(row=>{const rect=row.getBoundingClientRect();const mid=rect.top+rect.height/2;const dist=Math.abs(e.clientY-mid);if(dist<bestDist){bestDist=dist;best=row;}});
+  allRows.forEach(row=>{const rect=row.getBoundingClientRect();const dist=Math.abs(e.clientY-(rect.top+rect.height/2));if(dist<bestDist){bestDist=dist;best=row;}});
   if(best){
-    const rect=best.getBoundingClientRect();const pos=e.clientY<rect.top+rect.height/2?'top':'bot';
+    const rect=best.getBoundingClientRect(); const pos=e.clientY<rect.top+rect.height/2?'top':'bot';
     best.classList.add(pos==='top'?'drag-over-top':'drag-over-bot');
     vDrag.overTrackId=best.dataset.trackId;
-    const ot=findTrack(best.dataset.trackId);
-    vDrag.overIndex=ot.tasks.findIndex(t=>t.id===best.dataset.taskId);
+    vDrag.overIndex=findTrack(best.dataset.trackId).tasks.findIndex(t=>t.id===best.dataset.taskId);
     vDrag.overPos=pos;
   }
 }
-
 function onVUp(){
   if(!vDrag)return;
-  document.querySelectorAll('.drag-over-top,.drag-over-bot').forEach(el=>{el.classList.remove('drag-over-top','drag-over-bot');});
-  const row=document.querySelector(`.task-row[data-task-id="${vDrag.taskId}"]`);if(row)row.classList.remove('dragging-v');
+  document.querySelectorAll('.drag-over-top,.drag-over-bot').forEach(el=>el.classList.remove('drag-over-top','drag-over-bot'));
+  const row=document.querySelector(`.task-row[data-task-id="${vDrag.taskId}"]`); if(row)row.classList.remove('dragging-v');
   ghost.classList.remove('show');
   if(vDrag.moved&&vDrag.taskId){
     const found=findTask(vDrag.taskId);
@@ -854,46 +840,40 @@ function onVUp(){
       found.track.tasks=found.track.tasks.filter(t=>t.id!==vDrag.taskId);
       const tt=findTrack(vDrag.overTrackId);
       if(tt){let idx=vDrag.overIndex+(vDrag.overPos==='bot'?1:0);idx=Math.max(0,Math.min(tt.tasks.length,idx));tt.tasks.splice(idx,0,task);}
-      const ids=new Set([found.track.id,vDrag.overTrackId]);
-      ids.forEach(id=>rebuildSection(id));
+      new Set([found.track.id,vDrag.overTrackId]).forEach(id=>rebuildSection(id));
       markDirty();
     }
   }
-  document.removeEventListener('mousemove',onVMove);document.removeEventListener('mouseup',onVUp);
+  document.removeEventListener('mousemove',onVMove); document.removeEventListener('mouseup',onVUp);
   vDrag=null;
 }
 
-/* ══════════════════════════════════
-   RESET
-══════════════════════════════════ */
+/* ══ RESET ══ */
 function resetAll(){
-  if(!confirm('¿Restaurar el Gantt a su estado original? Se perderán los cambios no guardados.'))return;
+  if(!confirm('¿Restaurar el Gantt al estado original?'))return;
   tracks=JSON.parse(JSON.stringify(DEFAULT_TRACKS));
-  buildBody();markDirty();
+  buildBody(); markDirty();
 }
 
-/* ══════════════════════════════════
-   INIT
-══════════════════════════════════ */
+/* ══ INIT ══ */
 async function initGantt(){
   cellW=calcCellW();
-  setSaveStatus('saving','Cargando...');
-  const loaded=await loadCloud();
-  buildHeader();buildBody();
-  if(loaded) setSaveStatus('saved',cloudConfig.mode==='cloud'?'Cargado desde la nube':'Cargado localmente');
-  else setSaveStatus('idle','Listo');
+  setSaveStatus('saving','Cargando datos...');
+  const loaded=await loadData();
+  buildHeader(); buildBody();
+  if(loaded) setSaveStatus('saved',cfg.mode==='cloud'?'☁ Cargado desde la nube':'💾 Cargado localmente');
+  else setSaveStatus('idle','Listo — sin datos previos');
 }
+window.addEventListener('resize',()=>{ cellW=calcCellW(); buildHeader(); buildBody(); });
 
-window.addEventListener('resize',()=>{cellW=calcCellW();buildHeader();buildBody();});
-
-// boot
-loadConfig();
-if(cloudConfig.mode==='none'){
-  // show setup
-} else {
-  hideSetup();
+/* ══ BOOT ══ */
+if(readUrlConfig()){
+  // URL has config embedded — skip setup entirely
+  document.getElementById('setup-screen').classList.add('hidden');
   initGantt();
   startAutoSave();
+} else {
+  // show setup screen
 }
 </script>
 </body>
